@@ -7,8 +7,8 @@ export default function Sidebar() {
       <AddTodoForm/>
 
       <div className="mt-auto space-y-2">
-        <Button/>
-        <Button/>
+        <Button buttonType="secondary">Log in</Button>
+        <Button buttonType="secondary">Register</Button>
       </div>
 
     </section>
