@@ -5,7 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}", // Include all files in the `src` directory and its subdirectories 
   ],
   theme: {
-    extend: {},
+    fontFamily:{
+      sans: ["Inter", "sans-serif"]
+    },
   },
   plugins: [],
 }
