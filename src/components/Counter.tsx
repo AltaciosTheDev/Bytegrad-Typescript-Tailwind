@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export default function Counter() {
+export default function Counter({ todos }) {
   return (
-    <p> <b>0</b> / 0 todos completed</p>
-  )
+    <p>
+      <b>{todos.filter((todo) => todo.isCompleted).length}</b> / {todos.length}{" "}
+      todos completed
+    </p>
+  );
 }

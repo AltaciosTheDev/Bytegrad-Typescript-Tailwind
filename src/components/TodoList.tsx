@@ -1,15 +1,7 @@
 import { useState } from "react";
 import DeleteButton from "./DeleteButton";
 
-const initialTodos = [
-  { id:1, text: "buy groceries", isCompleted: false },
-  { id:2, text: "walk the dog", isCompleted: true },
-  { id:3, text: "do laundry", isCompleted: false },
-];
-
-export default function TodoList() {
-  const [todos, setTodos] = useState(initialTodos)
-
+export default function TodoList({todos, setTodos}) {
   const handleClick =(id) => {
     setTodos(prevTodos => prevTodos.map(prevTodo => {
       if(prevTodo.id == id){
