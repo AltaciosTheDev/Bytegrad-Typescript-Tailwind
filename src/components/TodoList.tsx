@@ -15,6 +15,10 @@ export default function TodoList({todos, setTodos}) {
 
   return (
     <ul>
+      {
+        todos.length === 0 && <li className="h-full flex justify-center items-center font-semibold">Start by adding a todo!</li>
+      }
+
       {todos.map((todo) => {
         return (
           <li
