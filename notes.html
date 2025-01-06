@@ -118,14 +118,106 @@ REACT TIPS
         SHOULD BE
             1)state and state managers should always be in the same place for easy efficient understanding of logic. 
             2)always send as props entire functions and not only the setState function
-            
-    
-    
+
+    DERIVED STATE
+        all calculations of a state in 1 place. Always together. 
 UI tips
     Little opacity keeps the palette opens possiblities.
 
 TYPESCRIPT
     npm install typescript --save-dev (with node installed)
+
+    In Js
+        static typing / explicit
+            let message: string = "hello"
+        inference
+            let message = "hello" -> ts assumes it is and can only be string
+        interfaces
+            interface Person {
+                name: string,
+                age: 30
+            }
+        type aliases(custom types for complex structures)
+            type Coordinates = {
+                x: number,
+                y: number
+            }
+        enums(named specific constraints)
+            enum Status {
+                Active: 'ACTIVE',
+                Inactive: 'INACTIVE',
+                Pending: 'PENDING'
+            }      
+            let userStatus: Status = Status.Active
+        Functions(define parameters and return values)
+            function add(x:number, y:number):number {
+                return x + y
+            }
+            let sum: number = add(5,10)
+        optional and default parameters
+            function greet(name: string, age?: number): string {
+                return `Hello ${name}, ${age ? `you are ${age} years old` : 'age is unknown'}`;
+            }
+            console.log(greet('Alice'));            // "Hello Alice, age is unknown"
+            console.log(greet('Bob', 30));         // "Hello Bob, you are 30 years old"
+        Handling Arrays
+            let stringArray: string[] = ['Alice', 'Bob', 'Charlie'];
+            let numberArray: number[] = [1, 2, 3];
+
+    Benefits in js
+        Early Error DetectioN
+        Enhanced IDE Support
+        Self-Documenting Code
+        Code Refactoring
+
+
+    Benefits for use in react
+        Static typing 
+        Early error detection
+        Guard rails to avoid mistakes
+        Intellisense(suggestions)
+
+    Prop validation
+        define the shape of props explicitly ensuring the correct data is passed to comps.
+
+        Example
+            type ButtonProps = {
+                label: string 
+                onClick: () => void
+            }
+
+            const Button: React.FC<ButtonProps> = ({label, onClick}) => <button onClick={onClick}>{label}</button>
+
+    State management 
+        ensures state variables and updates conform to expected types
+
+        EXAMPLE
+            const [count, setCount] = useState<number>(0)
+
+    Event Handling
+        Provides strong typing for events, making it easier to manage and understand DOM events.
+
+        EXAMPLE
+            const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+                console.log(e.target.value);
+            };
+
+    USES IN TODO WITH BYTEGRAD
+        state typing
+        function parameter typing 
+        prop typing
+        type aliasing for comp prop obj
+        optional property in button / btn type
+        union type to indicate one or another value ONLY / btn type
+        export of type alias Todo / always out of comp dec
+
+    WHAT I SEE
+        lets you know in 1 place all the props you will be using and the type it will use
+        type needs to be declared outside component definition
+
+
+
+    
 
 Tailwind 
     CSS framework that provides a set of pre-defined CSS clases to help the dev style quickly and efficient. 
