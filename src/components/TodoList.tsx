@@ -1,5 +1,5 @@
+import { Todo } from "../lib/types";
 import DeleteButton from "./DeleteButton";
-import {Todo} from "./App"
 
 type TodoListProps = {
   todos:Todo[],
