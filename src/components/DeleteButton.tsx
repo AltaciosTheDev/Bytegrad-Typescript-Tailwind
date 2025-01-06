@@ -1,11 +1,11 @@
 
 
-export default function DeleteButton({setTodos, id}) {
+export default function DeleteButton({handleDeleteTodo, id}) {
   return (
     <button 
     onClick={(e) => {
       e.stopPropagation()
-      setTodos(prevTodos => prevTodos.filter(prevTodo => prevTodo.id != id))
+      handleDeleteTodo(id)
     }}
     >
     ❌</button>
