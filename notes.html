@@ -16,6 +16,14 @@ LEARN:
     AUTHENTICATION
     DEPLOY
 
+LOG
+    01/06/2024
+        Wrapped app in contextprovider comp
+        implemented context in all components removing prop drillling and unnecessary comp prop types
+        created todocontext component abstracting away all state from app
+        created useTodoContext custom hook abstracting away logic of validating null case of todocontext
+        created todocontextype with union type type | null 
+
 VITE - initialize react app
     Tool that provides a streamlined efficient and fast way to build front end applications  
 
@@ -122,8 +130,36 @@ REACT TIPS
     DERIVED STATE
         all calculations of a state in 1 place. Always together. 
 
-    STATE MANAGEMENT
-        ....
+    COMPLEX STATE MANAGEMENT
+        Too much prop drilling 
+        If we want to change structure, all that prop drilling is useless
+        Means props for each component that does not need it, extra work...
+
+    REACT CONTEXT API(ZUSTAND / REDUX)
+        Component to hold all state, derived state and handlers and wrap around the app.
+        
+        CONTEXT FOLDER
+            TodosContextProvider.tsx
+
+        SYNTAX
+            <Context>
+                <App>
+            </Context>
+
+        STAGES OF OUR STATE 
+            1)state in todolist, functions in each component that uses them
+            2)state in app, functions in app
+            3)state in context provider, functions in context provider
+
+    CUSTOM HOOK 
+        If there is logic that will become repeatable involving a hook, create a function with a hook inside it.
+
+        example
+            creating custom hook to validate the null scenarion for our todosContext.
+            
+
+        
+        
 
 UI tips
     Little opacity keeps the palette opens possiblities.
@@ -215,6 +251,8 @@ TYPESCRIPT
         union type to indicate one or another value ONLY / btn type
         export of type alias Todo / always out of comp dec
         lib folder -> types -> condense of reusable typescript types 
+        context needs a type as well - union types default context state <TodoContextType | None>
+        
 
     WHAT I SEE
         lets you know in 1 place all the props you will be using and the type it will use

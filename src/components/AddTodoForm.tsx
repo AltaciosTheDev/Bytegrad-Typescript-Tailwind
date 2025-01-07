@@ -1,25 +1,20 @@
-import { useState } from "react";
+import {useState } from "react";
 import Button from "./Button";
+import { useTodosContext } from "../lib/hooks";
 
-type AddTodoFormProps = {
-  handleAddTodo: (todoText: string) => void
-}
-
-export default function AddTodoForm({
-  handleAddTodo
-}: AddTodoFormProps) {
-  const [todoText, setTodoText] = useState('')
-
-  const handleChange = (e : React.ChangeEvent<HTMLInputElement>)=> {
-    setTodoText(e.target.value)
-  }
+export default function AddTodoForm() {
+  const [todoText, setTodoText] = useState("");
+  const {handleAddTodo} = useTodosContext()
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTodoText(e.target.value);
+  };
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleAddTodo(todoText)
-        setTodoText("")
+        handleAddTodo(todoText);
+        setTodoText("");
       }}
     >
       <h2 className="font-medium text-[#231d15]">Add Todo</h2>
