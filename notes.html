@@ -14,6 +14,12 @@ LEARN:
     TAILWIND
     TYPESCRIPT
     AUTHENTICATION
+        kinde
+            conditional rendering for buttons
+                isAuthenticated ? log out : <> log in / register</>
+            login,register,logout functions from kinde to use as props for the buttons 
+
+            
     DEPLOY
 
 LOG
@@ -262,6 +268,7 @@ TYPESCRIPT
         lib folder -> types -> condense of reusable typescript types 
         context needs a type as well - union types default context state <TodoContextType | None>
         useState default: accepts functions returning the type or empty data type 
+        removing parameters from function from library, too much hastle
 
     WHAT I SEE
         lets you know in 1 place all the props you will be using and the type it will use
@@ -309,6 +316,29 @@ KINDE
         Easier integration with frameworks like react,angular.
 
     SETUP 
-        
+        quick start
+        select framework 
+        set up port
+        set up callback and log out urls 
+        npm i @kinde-oss/kinde-auth-react
+        wrap component in kinde context provider
+            <KindeProvider
+                clientId="8ff2dd278a384289a457a0db840c1839"
+                domain="https://altacios.kinde.com"
+                redirectUri="http://localhost:5173"
+                logoutUri="http://localhost:5173"
+            >
+                <Routes />
+            </KindeProvider>
 
+    login,logout,register
+        functions as props for buttons to invoke when clicked
+    isAuthenticated
+        To conditionally render the buttons
+        To alert to log in for > 3 todos
+    user
+        access information from the user and display it in the dashboard
+    isLoading
+        to conditionally render the user info or other text for the loading
+        
 -->
