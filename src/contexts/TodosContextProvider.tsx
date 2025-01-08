@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Todo } from "../lib/types";
 
 type TodosContextProps = {
@@ -17,9 +17,16 @@ type TTodosContext = {
 export const TodosContext = createContext<TTodosContext | null>(null);
 
 export default function TodosContextProvider({ children }: TodosContextProps) {
-
   //state
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(() => { //on states you can initiate with a function that returns the type or the empty data type
+    const savedTodos = localStorage.getItem("todos")
+    if(savedTodos){
+      return JSON.parse(savedTodos)//type
+    }
+    else{
+      return [] //empty 
+    }
+  });//our state accepts both types and we deliver
 
   //derived state
   const totalNumberOfTodos = todos.length;
@@ -56,6 +63,11 @@ export default function TodosContextProvider({ children }: TodosContextProps) {
     setTodos((prevTodos) => prevTodos.filter((prevTodo) => prevTodo.id != id));
   };
 
+  //side effects (outside react: fetch data, localstorage)
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  },[todos]) 
+  //synchronize something external with our truth 
   //2)return context with value
   return (
     <TodosContext.Provider
