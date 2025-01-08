@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { Todo } from "../lib/types";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 
 type TodosContextProps = {
   children: React.ReactNode
@@ -17,6 +18,7 @@ type TTodosContext = {
 export const TodosContext = createContext<TTodosContext | null>(null);
 
 export default function TodosContextProvider({ children }: TodosContextProps) {
+  const { isAuthenticated } = useKindeAuth(); //hook, so it must be inside component.
   //state
   const [todos, setTodos] = useState<Todo[]>(() => { //on states you can initiate with a function that returns the type or the empty data type
     const savedTodos = localStorage.getItem("todos")
@@ -36,7 +38,7 @@ export default function TodosContextProvider({ children }: TodosContextProps) {
 
   //event handlers / actions
   const handleAddTodo = (todoText: string) => {
-    if (todos.length >= 3) {
+    if (todos.length >= 3 && !isAuthenticated) {
       alert("Log in to add more than 3 todos");
       return;
     } else {
